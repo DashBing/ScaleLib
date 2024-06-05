@@ -13,14 +13,19 @@ struct music_unit{
 };
 
 #ifdef WIN32
+template<unsigned int beat_length=1>
 void music_play(std::vector<music_unit> music){
     for(auto i : music){
-        scalelib::scale::scale_beep(i.scale, i.time);
+        scalelib::scale::scale_beep(i.scale, i.time*beat_length);
     }
 }
-void music_play_4long(std::vector<music_unit> music){
+/*template<unsigned int beat_length=500>
+void music_play_n(std::vector<music_unit> music){
+    music_play<beat_length>(music);
+}*/
+void music_play_low(std::vector<music_unit> music){
     for(auto i : music){
-        scalelib::scale::scale_beep(i.scale, i.time*500);
+        scalelib::scale::scale_beep(i.scale, i.time);
     }
 }
 #endif
