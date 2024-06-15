@@ -1,14 +1,11 @@
 #ifndef _SCALELIB_MUSICPLAYER_H
 #define _SCALELIB_MUSICPLAYER_H
 
+#include "error_check.h"
 #include "scale.h"
 
 #ifdef __cplusplus
 #include <vector>
-
-#if __cplusplus < 201700
-#include "errors/high_cpp_version.h"
-#endif
 
 namespace scalelib::musicplayer{
 

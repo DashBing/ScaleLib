@@ -1,16 +1,14 @@
 #ifndef _SCALELIB_SCALE_H
 #define _SCALELIB_SCALE_H
 
+#include "error_check.h"
+
 #ifdef WIN32
 #include <windows.h>
 #endif
 
 #ifdef __cplusplus
 #include <cmath>
-
-#if __cplusplus < 201700
-#include "errors/high_cpp_version.h"
-#endif
 
 namespace scalelib::scale{
 #else
