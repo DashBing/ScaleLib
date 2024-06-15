@@ -5,6 +5,11 @@
 
 #ifdef __cplusplus
 #include <vector>
+
+#if __cplusplus < 201700
+#include "errors/high_cpp_version.h"
+#endif
+
 namespace scalelib::musicplayer{
 
 struct music_unit{

@@ -7,6 +7,11 @@
 
 #ifdef __cplusplus
 #include <cmath>
+
+#if __cplusplus < 201700
+#include "errors/high_cpp_version.h"
+#endif
+
 namespace scalelib::scale{
 #else
 #include <math.h>
