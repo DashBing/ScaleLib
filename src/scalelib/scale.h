@@ -7,19 +7,12 @@
 #include <windows.h>
 #endif
 
-#ifdef __cplusplus
 #include <cmath>
 
 namespace scalelib::scale{
-#else
-#include <math.h>
-#endif
 
 #define d_ratio 1.0594630943592953
 #define d_c0std 233
-#ifndef __cplusplus
-unsigned int c0std = d_c0std;
-#endif
 
 enum scales_id{
     C0, Cs0, D0, Ds0, E0, F0, Fs0, G0, Gs0, A0, As0, B0,
@@ -34,37 +27,25 @@ enum scales_id{
     scale_null
 };
 
-#ifdef __cplusplus
 template<unsigned int c0std=d_c0std>
-#endif
 unsigned int scale_to_frequency(enum scales_id scalename){
     const double up_ratio = d_ratio;
     return((int)round((double)(c0std)*pow(up_ratio, (double)(scalename))));
 }
 
 #ifdef WIN32
-#ifdef __cplusplus
 template<unsigned int c0std=d_c0std>
-#endif
 WINBOOL scale_beep(enum scales_id scalename, DWORD time){
     if(scalename==scale_null){
         Sleep(time);
         return(1);
     }
     else
-#ifdef __cplusplus
     return(Beep(scale_to_frequency<c0std>(scalename), time));
-#else
-    return(Beep(scale_to_frequency(scalename), time));
-#endif
 }
 #endif
 
 #undef d_ratio
 #undef d_c0std
-
-#ifdef __cplusplus
 }
-#endif
-
 #endif

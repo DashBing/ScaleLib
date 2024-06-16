@@ -4,7 +4,6 @@
 #include "error_check.h"
 #include "scale.h"
 
-#ifdef __cplusplus
 #include <cmath>
 #include <vector>
 #include <thread>
@@ -85,51 +84,5 @@ std::vector<std::thread *> note_play_high(std::vector<std::vector<music_unit_hig
 }
 
 #endif
-
 }
-#else
-
-#include <math.h>
-#include <stdlib.h>
-
-struct music_unit{
-    scales_id scale;
-    unsigned int time;
-};
-
-struct music_unit_high{
-    scales_id scale;
-    unsigned int note_type;
-    double note_times;
-};
-
-struct music_table{
-    struct music_unit * adress;
-    unsigned long long length;
-}
-
-struct music_table_high{
-    struct music_unit_high * adress;
-    unsigned long long length;
-}
-
-#ifdef WIN32
-
-unsigned int whole_note_length=2000;
-
-void music_play_high(struct music_table_high music){
-    for(unsigned long long i = 0; i<music.length; i++){
-        scale_beep(music.adress[i].scale, floor(whole_note_length/music.adress[i].note_type*note_times));
-    }
-}
-
-void music_play(struct music_table music){
-    for(unsigned long long i = 0; i<music.length; i++){
-        scale_beep(music.adress[i].scale, music.adress[i].time);
-    }
-}
-#endif
-
-#endif
-
 #endif

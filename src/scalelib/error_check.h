@@ -8,8 +8,6 @@
 #endif
 
 #else
-
-// C codes write here
-
+#error Removed support for C codes
 #endif
 #endif
