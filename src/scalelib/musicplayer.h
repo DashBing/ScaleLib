@@ -16,7 +16,8 @@ struct music_unit{
 };
 
 struct music_unit_high{
-    scalelib::scale::scales_id scale;
+    float sound;
+    int octave;
     unsigned int note_type;
     double note_times;
 };
@@ -38,7 +39,7 @@ void music_play(std::vector<music_unit> music){
 template<unsigned int whole_note_length=2000>
 void music_play_high(std::vector<music_unit_high> music){
     for(auto i : music){
-        scalelib::scale::scale_beep(i.scale, floor(whole_note_length/i.note_type*i.note_times));
+        scalelib::scale::scale_beep_high(i.sound, i.octave, floor(whole_note_length/i.note_type*i.note_times));
     }
 }
 
