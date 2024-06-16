@@ -21,7 +21,7 @@ struct music_unit_high{
     double note_times;
 };
 
-#ifdef WIN32
+#ifdef _SCALELIB_PLATFORM_CHECK_AC
 void music_play_low(std::vector<music_unit> music){
     for(auto i : music){
         scalelib::scale::scale_beep(i.scale, i.time);

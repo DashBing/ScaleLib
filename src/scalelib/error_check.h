@@ -7,6 +7,10 @@
 #error Your C++ standard version is too low to support!
 #endif
 
+#if defined(__WIN32) || defined(__linux__)
+#define _SCALELIB_PLATFORM_CHECK_AC
+#endif
+
 #else
 #error Removed support for C codes
 #endif

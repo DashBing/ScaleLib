@@ -3,8 +3,12 @@
 
 #include "error_check.h"
 
-#ifdef WIN32
+#ifdef __WIN32
 #include <windows.h>
+#endif
+
+#ifdef __linux__
+#include <linux/input.h>
 #endif
 
 #include <cmath>
@@ -33,9 +37,9 @@ unsigned int scale_to_frequency(enum scales_id scalename){
     return((int)round((double)(c0std)*pow(up_ratio, (double)(scalename))));
 }
 
-#ifdef WIN32
+#ifdef _SCALELIB_PLATFORM_CHECK_AC
 template<unsigned int c0std=d_c0std>
-WINBOOL scale_beep(enum scales_id scalename, DWORD time){
+int scale_beep(enum scales_id scalename, unsigned long time){
     if(scalename==scale_null){
         Sleep(time);
         return(1);
