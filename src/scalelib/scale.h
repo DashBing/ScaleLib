@@ -85,7 +85,7 @@ int scale_beep_high(float sound, int octive, unsigned int time){
                 return(0);
                 break;
         }
-        scale += C4;
+        scale += C3;
         scale += C1*octive;
         if(scale>=scale_null)return(0);
         else return(scale_beep<c0std>((enum scales_id)(scale), time));

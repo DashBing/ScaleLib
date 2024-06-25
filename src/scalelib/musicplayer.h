@@ -36,10 +36,10 @@ void music_play(std::vector<music_unit> music){
     }
 }
 
-template<unsigned int whole_note_length=2000>
+template<unsigned int bpm=120>
 void music_play_high(std::vector<music_unit_high> music){
     for(auto i : music){
-        scalelib::scale::scale_beep_high(i.sound, i.octave, floor(whole_note_length/i.note_type*i.note_times));
+        scalelib::scale::scale_beep_high(i.sound, i.octave, floor(60/(double)(bpm)*4000/i.note_type*i.note_times));
     }
 }
 
