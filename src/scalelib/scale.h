@@ -2,15 +2,7 @@
 #define _SCALELIB_SCALE_H
 
 #include "error_check.h"
-
-#ifdef __WIN32
-#include <windows.h>
-#endif
-
-#ifdef __linux__
-#include <unistd.h>
-#include <linux/input.h>
-#endif
+#include "sys_interface.h"
 
 #include <cmath>
 
@@ -40,27 +32,14 @@ unsigned int scale_to_frequency(enum scales_id scalename){
     return((int)round((double)(c0std)*pow(up_ratio, (double)(scalename))));
 }
 
-#ifdef __WIN32
-template<unsigned int c0std=d_c0std>
-WINBOOL scale_beep(enum scales_id scalename, DWORD time){
-    if(scalename==scale_null){
-        Sleep(time);
-        return(1);
-    }
-    else return(Beep(scale_to_frequency<c0std>(scalename), time));
-}
-#endif
-
-#ifdef __linux__
 template<unsigned int c0std=d_c0std>
 int scale_beep(enum scales_id scalename, unsigned int time){
     if(scalename==scale_null){
-        sleep(time);
+        sys_interface::sleep(time);
         return(1);
     }
-    else return(beep(scale_to_frequency<c0std>(scalename), time));
+    else return(sys_interface::beep(scale_to_frequency<c0std>(scalename), time));
 }
-#endif
 
 #define _sound(sound, scale_id) case sound:scale=scale_id;break;
 template<unsigned int c0std=d_c0std>

@@ -3,8 +3,9 @@
 using namespace std;
 using namespace scalelib::all;
 
-#define no_interludes
+//#define no_interludes
 //#define original
+#define bpm 96
 
 int main(){
     vector<music_unit_high> music = {
@@ -81,6 +82,6 @@ int main(){
         {6, -1, 8, 1}, {7, -1, 16, 1}, {1, 0, 16, 1}, {7, -1, 8, 1}, {1, 0, 16, 1}, {2, 0, 16, 1}, {3, 0, 8, 1}, {2, 0, 16, 1}, {1, 0, 16, 1}, {7, -1, 8, 1}, {5, -1, 16, 1}, {5, -1, 8, 2.5},
         {0, 0, 4, 2.5}, {1, 0, 16, 1}, {2, 0, 16, 1}
     };
-    music_play_high<96>(music);
+    music_play_high<bpm>(music);
     return 0;
 }
